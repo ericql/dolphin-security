@@ -24,6 +24,10 @@
         <module>dolphin-security-demo</module>
     </modules>
 
+    <properties>
+        <dolphin.security.version>1.0-SNAPSHOT</dolphin.security.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>

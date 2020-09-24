@@ -12,5 +12,16 @@
 
     <artifactId>dolphin-security-browser</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>io.dolphin</groupId>
+            <artifactId>dolphin-security-core</artifactId>
+            <version>${dolphin.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
+            <version>1.3.5.RELEASE</version>
+        </dependency>
+    </dependencies>
 </project>
