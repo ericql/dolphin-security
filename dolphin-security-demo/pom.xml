@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>dolphin-security-demo</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -19,4 +20,25 @@
             <version>${dolphin.security.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.3.RELEASE</version>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>dolphin-security-demo</finalName>
+    </build>
 </project>
