@@ -6,6 +6,7 @@ import io.dolphin.entity.UserQueryCondition;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,27 @@ public class UserController {
 
         user.setId("1");
         return user;
+    }
+
+    @PutMapping(value = "/{id:\\d+}")
+    public User update(@Valid @RequestBody User user, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> {
+                FieldError fieldError = (FieldError)error;
+                final String message = fieldError.getField() + error.getDefaultMessage();
+                System.out.println(message);
+            });
+        }
+
+        System.out.println(user);
+
+        user.setId("1");
+        return user;
+    }
+
+    @DeleteMapping(value = "/{id:\\d+}")
+    public void delete(@PathVariable("id") String id) {
+        System.out.println(id);
     }
 
     @GetMapping
