@@ -5,8 +5,11 @@ import io.dolphin.entity.User;
 import io.dolphin.entity.UserQueryCondition;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,9 +18,22 @@ import java.util.List;
  * @Author: Eric Liang
  * @Since: 2020-10-2 11:44
  */
+@Validated
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
+
+    @PostMapping
+    public User create(@Valid @RequestBody User user, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+        }
+
+        System.out.println(user);
+
+        user.setId("1");
+        return user;
+    }
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
