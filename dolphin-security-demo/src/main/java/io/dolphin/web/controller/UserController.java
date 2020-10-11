@@ -3,6 +3,7 @@ package io.dolphin.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.dolphin.entity.User;
 import io.dolphin.entity.UserQueryCondition;
+import io.dolphin.exception.UserNotExistException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
@@ -25,10 +26,10 @@ import java.util.List;
 public class UserController {
 
     @PostMapping
-    public User create(@Valid @RequestBody User user, BindingResult errors) {
-        if (errors.hasErrors()) {
-            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
-        }
+    public User create(@Valid @RequestBody User user) {
+        //if (errors.hasErrors()) {
+        //    errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+        //}
 
         System.out.println(user);
 
@@ -74,8 +75,10 @@ public class UserController {
     @GetMapping(value = "/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable("id") String id) {
-        final User user = new User();
-        user.setUsername("tom");
-        return user;
+        throw new UserNotExistException(id);
+
+        //final User user = new User();
+        //user.setUsername("tom");
+        //return user;
     }
 }
