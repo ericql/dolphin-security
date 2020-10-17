@@ -12,8 +12,8 @@ import java.util.Date;
  * @Author: Eric Liang
  * @Since: 2020-10-17 11:26
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class TimeAspect {
     @Around("execution(* io.dolphin.web.controller.UserController.*(..))")
     public Object handleControllerMethod(ProceedingJoinPoint pjp) throws Throwable {

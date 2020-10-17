@@ -10,7 +10,7 @@ import java.io.IOException;
  * @Author: Eric Liang
  * @Since: 2020-10-11 19:40
  */
-@Component
+//@Component
 public class TimeFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
